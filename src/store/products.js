@@ -2,12 +2,14 @@ import { productsAPI } from '../api/productsAPI'
 
 const SET_PRODUCTS = 'products/SET_USER_DATA'
 const SET_CATEGORY = 'products/SET_CATEGORY'
+const SET_ACTIVE_CATEGORY = 'products/SET_ACTIVE_CATEGORY'
 const TOGGLE_IS_FETCHING = 'products/TOGGLE_IS_FETCHING'
 const SET_ALREADY_PURCHASED = 'products/SET_ALREADY_PURCHASED'
 
 const initialState = {
     items: [],
     category: [],
+    activeCategory: 0,
     isFetching: false,
 }
 
@@ -25,6 +27,12 @@ const productsReducer = (state = initialState, action) => {
                 ...state,
                 category: action.payload,
                 isFetching: false,
+            }
+
+        case SET_ACTIVE_CATEGORY:
+            return {
+                ...state,
+                activeCategory: action.payload,
             }
 
         case TOGGLE_IS_FETCHING:
@@ -68,6 +76,11 @@ const setToggleIsFetching = fetching => ({
     payload: fetching,
 })
 
+const setActiveCategory = id => ({
+    type: SET_ACTIVE_CATEGORY,
+    payload: id,
+})
+
 export const setAlreadyPurchased = id => ({
     type: SET_ALREADY_PURCHASED,
     payload: id,
@@ -87,6 +100,7 @@ export const setProduct = () => {
 
 export const sortProduct = params => {
     return async dispatch => {
+        dispatch(setActiveCategory(params))
         dispatch(setToggleIsFetching(true))
         const product = await productsAPI.getSortProducts(params)
         if (product.status === 200) {

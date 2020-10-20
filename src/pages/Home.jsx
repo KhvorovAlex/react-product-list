@@ -3,11 +3,12 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+//HOC
+import AuthRedirect from '../components/HOC/AuthRedirect'
 //components
 import { Grid } from '@material-ui/core'
 import Header from '../components/Header'
 import NavItems from '../components/NavItems'
-
 import Items from '../components/Items'
 import Cart from '../components/Cart'
 import AddItem from '../components/AddItem'
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function Home() {
+function Home() {
     const classes = useStyles()
     const dispatch = useDispatch()
 
@@ -55,3 +56,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default Home

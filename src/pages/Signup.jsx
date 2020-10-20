@@ -41,8 +41,8 @@ export default function SignUp() {
 
     const { handleSubmit, control } = useForm()
 
-    const onSubmit = ({ firstName, lastName, email, password, promo }, e) => {
-        e.preventDefault()
+    const onSubmit = ({ firstName, lastName, email, password, promo }, event) => {
+        event.preventDefault()
         const body = {
             email,
             password,

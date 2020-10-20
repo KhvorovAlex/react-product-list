@@ -77,6 +77,7 @@ function AddItem() {
                         autoComplete='current-price'
                     />
                 }
+                type='number'
                 name='price'
                 control={control}
             />

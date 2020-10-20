@@ -10,12 +10,11 @@ import { setAlreadyPurchased, sortProduct } from '../store/products'
 
 function Items() {
     const dispatch = useDispatch()
-    const { items, category, isFetching } = useSelector(state => state.product)
+    const { items, category, isFetching, activeCategory } = useSelector(state => state.product)
     const { items: cartItems } = useSelector(state => state.cart)
-    const [activeCategory, setActiveCategory] = React.useState(0)
+    // const [activeCategory, setActiveCategory] = React.useState(0)
 
     const handleClickCategory = id => {
-        setActiveCategory(id)
         dispatch(sortProduct(id))
     }
 

@@ -10,7 +10,7 @@ export const userAPI = {
     },
 
     register(body) {
-        return instance.post(`/register`, body).then(response => response.data)
+        return instance.post(`/register`, body).then(response => response.data.data)
     },
 
     getUser(email) {

@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 //css
 import './App.css'
-// import AuthRedirect from './components/HOC/AuthRedirect'
+//components
 import Home from './pages/Home'
 import SignIn from './pages/Signin'
 import SignUp from './pages/Signup'
