@@ -1,18 +1,21 @@
-//libraries
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+const mapStateToPropsForRedirect = state => ({
+    isAuth: state.auth.isAuth,
+})
 
 const AuthRedirect = Component => {
-    const { isAuth } = useSelector(state => state.auth)
-
-    if (!isAuth) return <Redirect to='/' />
-
-    return class extends React.Component {
+    class RedirectComponent extends React.Component {
         render() {
+            if (!this.props.isAuth) return <Redirect to='/' />
+
             return <Component {...this.props} />
         }
     }
+
+    return connect(mapStateToPropsForRedirect)(RedirectComponent)
 }
 
 export default AuthRedirect

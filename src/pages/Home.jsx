@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-function Home() {
+function HomePage() {
     const classes = useStyles()
     const dispatch = useDispatch()
 
@@ -56,5 +56,7 @@ function Home() {
         </div>
     )
 }
+
+const Home = AuthRedirect(HomePage)
 
 export default Home

@@ -46,7 +46,7 @@ export default function SignIn() {
     const { handleSubmit, control } = useForm()
 
     const onSubmit = async ({ email, password }) => {
-        const login = dispatch(loginUser({ email, password }))
+        const login = await dispatch(loginUser({ email, password }))
         if (login) {
             history.push('/home')
         }

@@ -35,6 +35,7 @@ export const loginUser = body => {
         if (response.status === 200) {
             const user = await userAPI.getUser(body.email)
             dispatch(setUserData(user))
+            return true
         }
     }
 }
