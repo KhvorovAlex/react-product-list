@@ -2,7 +2,7 @@ import React from 'react'
 import { FormControl, Grid, InputLabel, makeStyles, MenuItem, Select } from '@material-ui/core'
 import { Controller, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
-
+import { useHistory } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { productsAPI } from '../api/productsAPI'
@@ -32,14 +32,16 @@ const defaultProps = {
 
 function AddItem() {
     const classes = useStyles()
+    const history = useHistory()
     const { handleSubmit, control } = useForm()
     const category = useSelector(state => state.product.category)
 
     const onSubmit = async (data, e) => {
-        e.preventDefault()
         const body = { ...data, ...defaultProps }
         const response = await productsAPI.addProducts(body)
-        console.log(response)
+        if (response.status === 201) {
+            history.push('/home')
+        }
     }
 
     return (

@@ -51,7 +51,7 @@ export default function SignUp() {
             promo,
         }
         axios.post('http://localhost:3001/register', body).then(data => {
-            if (data.status === 200) {
+            if (data.status === 201) {
                 history.push('/')
             }
         })

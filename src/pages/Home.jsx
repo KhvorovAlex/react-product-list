@@ -2,7 +2,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Route } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 //HOC
 import AuthRedirect from '../components/HOC/AuthRedirect'
 //components
@@ -13,7 +12,6 @@ import Items from '../components/Items'
 import Cart from '../components/Cart'
 import AddItem from '../components/AddItem'
 import AddCategory from '../components/AddCategory'
-import { setProduct } from '../store/products'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,11 +21,6 @@ const useStyles = makeStyles(theme => ({
 
 function HomePage() {
     const classes = useStyles()
-    const dispatch = useDispatch()
-
-    React.useEffect(() => {
-        dispatch(setProduct())
-    }, [dispatch])
 
     return (
         <div className={classes.root}>

@@ -6,13 +6,12 @@ import { Box, Button, Grid } from '@material-ui/core'
 import ProductItem from './ProductItem'
 //store
 import { addItem } from '../store/cart'
-import { setAlreadyPurchased, sortProduct } from '../store/products'
+import { setAlreadyPurchased, setProduct, sortProduct } from '../store/products'
 
 function Items() {
     const dispatch = useDispatch()
-    const { items, category, isFetching, activeCategory } = useSelector(state => state.product)
+    const { items, category, activeCategory } = useSelector(state => state.product)
     const { items: cartItems } = useSelector(state => state.cart)
-    // const [activeCategory, setActiveCategory] = React.useState(0)
 
     const handleClickCategory = id => {
         dispatch(sortProduct(id))
@@ -25,6 +24,10 @@ function Items() {
     const alreadyPurchased = id => {
         dispatch(setAlreadyPurchased(id))
     }
+
+    React.useEffect(() => {
+        dispatch(setProduct())
+    }, [dispatch])
 
     return (
         <>

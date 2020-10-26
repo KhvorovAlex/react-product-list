@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { productsAPI } from '../api/productsAPI'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     form: {
@@ -18,12 +19,14 @@ const useStyles = makeStyles(theme => ({
 
 function AddCategory() {
     const classes = useStyles()
+    const history = useHistory()
     const { handleSubmit, control } = useForm()
 
     const onSubmit = async data => {
-        console.log(data)
         const response = await productsAPI.addCategory({ categoryTitle: data.category })
-        console.log(response)
+        if (response.status === 201) {
+            history.push('/home')
+        }
     }
 
     return (
